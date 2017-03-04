@@ -26,7 +26,6 @@ namespace Algorithm
             //        Console.WriteLine("Name：{0}\tValue：{1}", valueName,keyRun.GetValue(valueName));
             //    }
             //}
-            int aa = 0;
             Console.WriteLine("请输入数字的个数：");
             List<int> list = new List<int>();
             Random r = new Random();

@@ -175,6 +175,48 @@ namespace Algorithm
             }
             return arr;
         }
+
+        /// <summary>
+        /// 堆排序
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static List<int> HeapSort(List<int> arr)
+        {
+            int len = arr.Count;
+            //建立大顶堆
+            for (int i = len / 2-1; i >= 0; i--)
+            {
+                heapAdjust(arr, i, len);
+            }
+            for (int i = len - 1; i >= 0; i--)
+            {
+                Swap(arr, 0, i);
+                heapAdjust(arr, 0, i );
+            }
+            return arr;
+        }
+        /// <summary>
+        /// 堆筛选 
+        /// </summary>
+        /// <param name="arr">数组</param>
+        /// <param name="start">起始值针</param>
+        /// <param name="end">结束指针</param>
+        private static void heapAdjust(List<int> arr, int start, int end)
+        {
+            int temp = arr[start];
+            int child = 2 * start + 1;
+            while (child < end)
+            {
+                if (child + 1 < end && arr[child] < arr[child + 1]) child++;
+                if (temp>=arr[child]) break;
+                arr[start] = arr[child];
+                start = child;
+                child = 2 * start + 1;
+            }
+            arr[start] = temp;
+        }
+
         /// <summary>
         /// 合并两个数组
         /// </summary>

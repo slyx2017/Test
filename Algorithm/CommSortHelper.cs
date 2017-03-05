@@ -177,7 +177,7 @@ namespace Algorithm
         }
 
         /// <summary>
-        /// 堆排序
+        /// 7.堆排序
         /// </summary>
         /// <param name="arr"></param>
         /// <returns></returns>
@@ -185,17 +185,65 @@ namespace Algorithm
         {
             int len = arr.Count;
             //建立大顶堆
-            for (int i = len / 2-1; i >= 0; i--)
+            for (int i = len / 2 - 1; i >= 0; i--)
             {
                 heapAdjust(arr, i, len);
             }
             for (int i = len - 1; i >= 0; i--)
             {
                 Swap(arr, 0, i);
-                heapAdjust(arr, 0, i );
+                heapAdjust(arr, 0, i);
             }
             return arr;
         }
+
+        /// <summary>
+        /// 8.计数排序
+        /// </summary>
+        /// <param name="arr">待排序的数组</param>
+        /// <returns>排序后的结果</returns>
+        public static List<int> CountSort(List<int> arr)
+        {
+            int max = Max(arr);
+            List<int> list = new List<int>();
+            for (int i = 0; i < max+1; i++)
+            {
+                list.Add(0);//初始化计数数组
+            }
+            //单个元素计数
+            for (int i = 0; i < arr.Count; i++)
+            {
+                list[arr[i]] = list[arr[i]] + 1;
+            }
+            //计算小于等于某数的个数
+            for (int i = 1; i < list.Count; i++)
+            {
+                list[i] += list[i - 1];
+            }
+            //得到排序后的结果
+            for (int i = 0; i < arr.Count; i++)
+            {
+                int numindex = list[arr[i]] - 1;
+                arr[i] = arr[numindex];
+                list[arr[i]] = list[arr[i]] - 1;
+            }
+            return arr;
+        }
+        /// <summary>
+        /// 得到数组的最大值
+        /// </summary>
+        /// <param name="arr">数组</param>
+        /// <returns>返回最大值</returns>
+        private static int Max(List<int> arr)
+        {
+            int max = 0;
+            foreach (int ele in arr)
+            {
+                if (ele > max) max = ele;
+            }
+            return max;
+        }
+
         /// <summary>
         /// 堆筛选 
         /// </summary>
@@ -209,7 +257,7 @@ namespace Algorithm
             while (child < end)
             {
                 if (child + 1 < end && arr[child] < arr[child + 1]) child++;
-                if (temp>=arr[child]) break;
+                if (temp >= arr[child]) break;
                 arr[start] = arr[child];
                 start = child;
                 child = 2 * start + 1;

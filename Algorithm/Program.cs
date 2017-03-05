@@ -119,6 +119,16 @@ namespace Algorithm
                 arrNum7 = CommSortHelper.HeapSort(arrNum7);
             }
             ShowSortEnd(arrNum7);
+            Console.WriteLine("*****************************************************");
+            //10.计数排序()
+            Console.WriteLine("计数排序");
+            Console.WriteLine("要排序的数字：{0}", strNum);
+            List<int> arrNum8 = list;// new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            using (new TestTime())
+            {
+                arrNum8 = CommSortHelper.CountSort(arrNum8);
+            }
+            ShowSortEnd(arrNum8);
         }
 
         private static void ShowSortEnd(List<int> arr)

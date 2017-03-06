@@ -42,7 +42,7 @@ namespace Algorithm
             Console.WriteLine("冒泡排序");
             Console.WriteLine("要排序的数字：{0}", strNum);
             //int[] arrNum0 = { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
-            List<int> arrNum = list;//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            List<int> arrNum =new List<int>(list);//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
             using (new TestTime())
             {
                 arrNum = CommSortHelper.BubbleSort(arrNum);
@@ -53,7 +53,7 @@ namespace Algorithm
             //4.SelectionSort()
             Console.WriteLine("选择排序");
             Console.WriteLine("要排序的数字：{0}", strNum);
-            List<int> arrNum1 = list;// new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            List<int> arrNum1 = new List<int>(list);//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
             using (new TestTime())
             {
                 arrNum1 = CommSortHelper.SelectionSort(arrNum1);
@@ -63,7 +63,7 @@ namespace Algorithm
             //5.InsertionSort()
             Console.WriteLine("插入排序");
             Console.WriteLine("要排序的数字：{0}", strNum);
-            List<int> arrNum2 = list;// new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            List<int> arrNum2 = new List<int>(list);//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
             using (new TestTime())
             {
                 arrNum2 = CommSortHelper.InsertionSort(arrNum2);
@@ -73,7 +73,7 @@ namespace Algorithm
             //6.ShellSort()
             Console.WriteLine("希尔排序");
             Console.WriteLine("要排序的数字：{0}", strNum);
-            List<int> arrNum3 = list;// new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            List<int> arrNum3 = new List<int>(list);//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
             using (new TestTime())
             {
                 arrNum3 = CommSortHelper.ShellSort(arrNum3);
@@ -83,7 +83,7 @@ namespace Algorithm
             //6.ShellSort()
             Console.WriteLine("希尔排序");
             Console.WriteLine("要排序的数字：{0}", strNum);
-            List<int> arrNum4 = list;// new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            List<int> arrNum4 = new List<int>(list);//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
             using (new TestTime())
             {
                 arrNum4 = CommSortHelper.ShellSorted(arrNum4);
@@ -93,7 +93,7 @@ namespace Algorithm
             //7.MergeSort()
             Console.WriteLine("归并排序");
             Console.WriteLine("要排序的数字：{0}", strNum);
-            List<int> arrNum5 = list;// new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            List<int> arrNum5 = new List<int>(list);//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
             using (new TestTime())
             {
                 arrNum5 = CommSortHelper.MergeSort(arrNum5);
@@ -103,7 +103,7 @@ namespace Algorithm
             //8.快速排序()
             Console.WriteLine("快速排序");
             Console.WriteLine("要排序的数字：{0}", strNum);
-            List<int> arrNum6 = list;// new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            List<int> arrNum6 = new List<int>(list);//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
             using (new TestTime())
             {
                 arrNum6 = CommSortHelper.QuickSort(arrNum6, 0, arrNum6.Count - 1);
@@ -113,7 +113,7 @@ namespace Algorithm
             //9.堆排序()
             Console.WriteLine("堆排序");
             Console.WriteLine("要排序的数字：{0}", strNum);
-            List<int> arrNum7 = list;// new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            List<int> arrNum7 = new List<int>(list);//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
             using (new TestTime())
             {
                 arrNum7 = CommSortHelper.HeapSort(arrNum7);
@@ -123,16 +123,27 @@ namespace Algorithm
             //10.计数排序()
             Console.WriteLine("计数排序");
             Console.WriteLine("要排序的数字：{0}", strNum);
-            List<int> arrNum8 = list;// new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            List<int> arrNum8 = new List<int>(list);//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
             using (new TestTime())
             {
                 arrNum8 = CommSortHelper.CountSort(arrNum8);
             }
             ShowSortEnd(arrNum8);
+            Console.WriteLine("*****************************************************");
+            //10.桶排序()
+            Console.WriteLine("桶排序");
+            Console.WriteLine("要排序的数字：{0}", strNum);
+            List<int> arrNum9 = new List<int>(list);//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            using (new TestTime())
+            {
+                arrNum9 = CommSortHelper.BucketSort(arrNum9);
+            }
+            ShowSortEnd(arrNum9);
         }
 
         private static void ShowSortEnd(List<int> arr)
         {
+            if (arr.Count <= 0) return;
             string sortValue = "";
             for (int j = 0; j < arr.Count; j++)
             {

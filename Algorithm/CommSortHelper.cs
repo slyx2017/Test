@@ -204,44 +204,65 @@ namespace Algorithm
         /// <returns>排序后的结果</returns>
         public static List<int> CountSort(List<int> arr)
         {
-            int max = Max(arr);
-            List<int> list = new List<int>();
-            for (int i = 0; i < max+1; i++)
+            int max = arr.Max();
+            int[] arrResult = new int[arr.Count];
+            int[] arrList = new int[max + 1];
+
+            for (int i = 0; i <= max; i++)
             {
-                list.Add(0);//初始化计数数组
+                arrList[i]=0;//初始化计数数组
             }
             //单个元素计数
             for (int i = 0; i < arr.Count; i++)
             {
-                list[arr[i]] = list[arr[i]] + 1;
+                arrList[arr[i]] = arrList[arr[i]] + 1;
             }
             //计算小于等于某数的个数
-            for (int i = 1; i < list.Count; i++)
+            for (int i = 1; i <= max; i++)
             {
-                list[i] += list[i - 1];
+                arrList[i] += arrList[i - 1];
             }
             //得到排序后的结果
-            for (int i = 0; i < arr.Count; i++)
+            for (int i = arr.Count-1; i >=0 ; i--)
             {
-                int numindex = list[arr[i]] - 1;
-                arr[i] = arr[numindex];
-                list[arr[i]] = list[arr[i]] - 1;
+                int numindex = arrList[arr[i]] - 1;
+                arrResult[numindex] = arr[i];
+                arrList[arr[i]] = arrList[arr[i]] - 1;
             }
-            return arr;
+            return arrResult.ToList();
         }
         /// <summary>
-        /// 得到数组的最大值
+        /// 9.桶排序
         /// </summary>
-        /// <param name="arr">数组</param>
-        /// <returns>返回最大值</returns>
-        private static int Max(List<int> arr)
+        /// <param name="arr">待排序的数组</param>
+        /// <returns>返回排序后的结果</returns>
+        public static List<int> BucketSort(List<int>arr)
         {
-            int max = 0;
-            foreach (int ele in arr)
+            int len = arr.Count;
+            int min = arr.Min();
+            int max = arr.Max();
+            int bucketCount = (max - min) / len + 1;//桶的数量
+            List<List<int>> bucketList = new List<List<int>>(bucketCount);//创建桶
+            for (int i = 0; i < bucketCount; i++)
             {
-                if (ele > max) max = ele;
+                bucketList.Add(new List<int>());//初始化桶
             }
-            return max;
+            for (int i = 0; i < len; i++)
+            {
+                int numIndex = (arr[i] - min) / len;
+                bucketList[numIndex].Add(arr[i]);
+            }
+            arr.Clear();
+            for (int i = 0; i < bucketList.Count; i++)
+            {
+                InsertionSort(bucketList[i]);
+                for (int j = 0; j < bucketList[i].Count; j++)
+                {
+                    arr.Add(bucketList[i][j]);
+                }
+                ShowPro(bucketList[i],i-1);
+            }
+            return arr;
         }
 
         /// <summary>
@@ -340,6 +361,7 @@ namespace Algorithm
         /// <param name="index"></param>
         private static void ShowPro(List<int> arr, int index)
         {
+            if (arr.Count <= 0) return;
             string sortValue = "";
             for (int j = 0; j < arr.Count; j++)
             {

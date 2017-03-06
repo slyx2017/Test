@@ -139,6 +139,16 @@ namespace Algorithm
                 arrNum9 = CommSortHelper.BucketSort(arrNum9);
             }
             ShowSortEnd(arrNum9);
+            Console.WriteLine("*****************************************************");
+            //10.基数排序()
+            Console.WriteLine("基数排序");
+            Console.WriteLine("要排序的数字：{0}", strNum);
+            List<int> arrNum10 = new List<int>(list);//new List<int>() { 44, 3, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+            using (new TestTime())
+            {
+                arrNum10 = CommSortHelper.RadixSort(arrNum10.ToArray());
+            }
+            ShowSortEnd(arrNum10);
         }
 
         private static void ShowSortEnd(List<int> arr)

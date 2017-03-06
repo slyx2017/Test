@@ -26,6 +26,7 @@ namespace Algorithm
             //        Console.WriteLine("Name：{0}\tValue：{1}", valueName,keyRun.GetValue(valueName));
             //    }
             //}
+            string name = "测试2017-3-6 9:52"; 
             Console.WriteLine("请输入数字的个数：");
             List<int> list = new List<int>();
             Random r = new Random();

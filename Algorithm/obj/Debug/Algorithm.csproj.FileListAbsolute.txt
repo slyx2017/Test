@@ -22,3 +22,6 @@ D:\360极速浏览器下载\Algorithm\Algorithm\obj\Debug\Algorithm.csprojResolv
 E:\MyProduct\Algorithm\Algorithm\bin\Debug\Algorithm.exe.config
 E:\MyProduct\Algorithm\Algorithm\obj\Debug\Algorithm.exe
 E:\MyProduct\Algorithm\Algorithm\obj\Debug\Algorithm.pdb
+E:\MyProduct\Algorithm\Algorithm\bin\Debug\Algorithm.exe
+E:\MyProduct\Algorithm\Algorithm\bin\Debug\Algorithm.pdb
+E:\MyProduct\Algorithm\Algorithm\obj\Debug\Algorithm.csprojResolveAssemblyReference.cache

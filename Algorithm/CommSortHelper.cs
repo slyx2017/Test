@@ -210,7 +210,7 @@ namespace Algorithm
 
             for (int i = 0; i <= max; i++)
             {
-                arrList[i]=0;//初始化计数数组
+                arrList[i] = 0;//初始化计数数组
             }
             //单个元素计数
             for (int i = 0; i < arr.Count; i++)
@@ -223,7 +223,7 @@ namespace Algorithm
                 arrList[i] += arrList[i - 1];
             }
             //得到排序后的结果
-            for (int i = arr.Count-1; i >=0 ; i--)
+            for (int i = arr.Count - 1; i >= 0; i--)
             {
                 int numindex = arrList[arr[i]] - 1;
                 arrResult[numindex] = arr[i];
@@ -236,7 +236,7 @@ namespace Algorithm
         /// </summary>
         /// <param name="arr">待排序的数组</param>
         /// <returns>返回排序后的结果</returns>
-        public static List<int> BucketSort(List<int>arr)
+        public static List<int> BucketSort(List<int> arr)
         {
             int len = arr.Count;
             int min = arr.Min();
@@ -260,9 +260,66 @@ namespace Algorithm
                 {
                     arr.Add(bucketList[i][j]);
                 }
-                ShowPro(bucketList[i],i-1);
+                //ShowPro(bucketList[i], i - 1);
             }
             return arr;
+        }
+        /// <summary>
+        /// 10.基数排序
+        /// </summary>
+        /// <param name="arr">待排序的数组</param>
+        /// <returns>返回排序后的结果</returns>
+        public static List<int> RadixSort(int[] arr)
+        {
+            int len = arr.Length;
+            List<List<int>> arrResult = new List<List<int>>();
+            for (int i = 0; i < 10; i++)
+            {
+                //申请10个桶，用于存放0-9
+                arrResult.Add(new List<int>());
+            }
+            int maxBit = GetMaxBit(arr);
+
+            for (int i = 0; i < maxBit; i++)
+            {
+                //数据入桶
+                for (int j = 0; j < len; j++)
+                {
+                    int bucket = arr[j]/(int)(Math.Pow(10,i))-arr[j] / (int)(Math.Pow(10, i+1))*10;
+                    arrResult[bucket].Add(arr[j]);
+                }
+                int pos = 0;
+                //将桶里数据重新放入数组
+                for (int k = 0; k < 10; k++)
+                {
+                    foreach (int item in arrResult[k])
+                    {
+                        arr[pos++] = item;
+                    }
+                }
+                for (int k = 0; k < 10; k++)
+                {
+                    arrResult[k].Clear();
+                }
+            }
+            return arr.ToList();
+        }
+
+        private static int Shift(int[] arr, int index)
+        {
+            int value = arr[index];
+            arr.Skip(index);
+            return value;
+        }
+
+        private static int GetMaxBit(int[] arr)
+        {
+            int maxBit = 0;
+            foreach (int ele in arr)
+            {
+                if (ele > maxBit) maxBit = ele;
+            }
+            return maxBit;
         }
 
         /// <summary>

@@ -231,6 +231,39 @@ namespace Algorithm
             }
             return arrResult.ToList();
         }
+        /// <summary>
+        /// 9.桶排序
+        /// </summary>
+        /// <param name="arr">待排序的数组</param>
+        /// <returns>返回排序后的结果</returns>
+        public static List<int> BucketSort(List<int>arr)
+        {
+            int len = arr.Count;
+            int min = arr.Min();
+            int max = arr.Max();
+            int bucketCount = (max - min) / len + 1;//桶的数量
+            List<List<int>> bucketList = new List<List<int>>(bucketCount);//创建桶
+            for (int i = 0; i < bucketCount; i++)
+            {
+                bucketList.Add(new List<int>());//初始化桶
+            }
+            for (int i = 0; i < len; i++)
+            {
+                int numIndex = (arr[i] - min) / len;
+                bucketList[numIndex].Add(arr[i]);
+            }
+            arr.Clear();
+            for (int i = 0; i < bucketList.Count; i++)
+            {
+                InsertionSort(bucketList[i]);
+                for (int j = 0; j < bucketList[i].Count; j++)
+                {
+                    arr.Add(bucketList[i][j]);
+                }
+                ShowPro(bucketList[i],i-1);
+            }
+            return arr;
+        }
 
         /// <summary>
         /// 堆筛选 

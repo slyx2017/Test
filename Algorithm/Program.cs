@@ -26,7 +26,7 @@ namespace Algorithm
             //        Console.WriteLine("Name：{0}\tValue：{1}", valueName,keyRun.GetValue(valueName));
             //    }
             //}
-            Console.WriteLine("请输入数字的个数：");
+            Console.WriteLine("请输入随机生成数字的个数：");
             List<int> list = new List<int>();
             Random r = new Random();
             int numCount = Convert.ToInt32(Console.ReadLine());

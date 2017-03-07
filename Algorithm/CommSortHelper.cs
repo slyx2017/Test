@@ -175,7 +175,6 @@ namespace Algorithm
             }
             return arr;
         }
-
         /// <summary>
         /// 7.堆排序
         /// </summary>
@@ -196,7 +195,6 @@ namespace Algorithm
             }
             return arr;
         }
-
         /// <summary>
         /// 8.计数排序
         /// </summary>
@@ -204,7 +202,7 @@ namespace Algorithm
         /// <returns>排序后的结果</returns>
         public static List<int> CountSort(List<int> arr)
         {
-            int max = arr.Max();
+            int max = GetMaxValue(arr.ToArray());
             int[] arrResult = new int[arr.Count];
             int[] arrList = new int[max + 1];
 
@@ -239,8 +237,8 @@ namespace Algorithm
         public static List<int> BucketSort(List<int> arr)
         {
             int len = arr.Count;
-            int min = arr.Min();
-            int max = arr.Max();
+            int min = GetMinValue(arr.ToArray());
+            int max = GetMaxValue(arr.ToArray());
             int bucketCount = (max - min) / len + 1;//桶的数量
             List<List<int>> bucketList = new List<List<int>>(bucketCount);//创建桶
             for (int i = 0; i < bucketCount; i++)
@@ -272,6 +270,7 @@ namespace Algorithm
         public static List<int> RadixSort(int[] arr)
         {
             int len = arr.Length;
+            //创建桶
             List<List<int>> arrResult = new List<List<int>>();
             for (int i = 0; i < 10; i++)
             {
@@ -279,7 +278,6 @@ namespace Algorithm
                 arrResult.Add(new List<int>());
             }
             int maxBit = GetMaxBit(arr);
-
             for (int i = 0; i < maxBit; i++)
             {
                 //数据入桶
@@ -297,6 +295,7 @@ namespace Algorithm
                         arr[pos++] = item;
                     }
                 }
+                //清除桶里所有数据
                 for (int k = 0; k < 10; k++)
                 {
                     arrResult[k].Clear();
@@ -304,14 +303,11 @@ namespace Algorithm
             }
             return arr.ToList();
         }
-
-        private static int Shift(int[] arr, int index)
-        {
-            int value = arr[index];
-            arr.Skip(index);
-            return value;
-        }
-
+        /// <summary>
+        /// 得到数组arr中最大值的位数
+        /// </summary>
+        /// <param name="arr">数组</param>
+        /// <returns>返回最大值的位数</returns>
         private static int GetMaxBit(int[] arr)
         {
             int maxBit = 0;
@@ -319,9 +315,36 @@ namespace Algorithm
             {
                 if (ele > maxBit) maxBit = ele;
             }
-            return maxBit;
+            return maxBit.ToString().Length;
         }
-
+        /// <summary>
+        /// 得到数组arr中最大值
+        /// </summary>
+        /// <param name="arr">数组</param>
+        /// <returns>返回最大值</returns>
+        private static int GetMaxValue(int[] arr)
+        {
+            int maxValue = int.MinValue;
+            foreach (int ele in arr)
+            {
+                if (ele > maxValue) maxValue = ele;
+            }
+            return maxValue;
+        }
+        /// <summary>
+        /// 得到数组arr中最小值
+        /// </summary>
+        /// <param name="arr">数组</param>
+        /// <returns>返回最小值</returns>
+        private static int GetMinValue(int[] arr)
+        {
+            int minValue = int.MaxValue;
+            foreach (int ele in arr)
+            {
+                if (ele < minValue) minValue = ele;
+            }
+            return minValue;
+        }
         /// <summary>
         /// 堆筛选 
         /// </summary>
@@ -342,7 +365,6 @@ namespace Algorithm
             }
             arr[start] = temp;
         }
-
         /// <summary>
         /// 合并两个数组
         /// </summary>
@@ -356,26 +378,33 @@ namespace Algorithm
             {
                 if (left[0] <= right[0])
                 {
-                    result.Add(left.First());
-                    left.RemoveAt(0);
+                    result.Add(Shift(left));
                 }
                 else
                 {
-                    result.Add(right.First());
-                    right.RemoveAt(0);
+                    result.Add(Shift(right));
                 }
             }
             while (left.Count > 0)
             {
-                result.Add(left.First());
-                left.RemoveAt(0);
+                result.Add(Shift(left));
             }
             while (right.Count > 0)
             {
-                result.Add(right.First());
-                right.RemoveAt(0);
+                result.Add(Shift(right));
             }
             return result;
+        }
+        /// <summary>
+        /// 把数组的第一个元素从其中删除,并返回第一个元素的值。
+        /// </summary>
+        /// <param name="arr">数组</param>
+        /// <returns>返回的值</returns>
+        private static int Shift(List<int> arr)
+        {
+            int value=arr.First();
+            arr.RemoveAt(0);
+            return value; 
         }
         /// <summary>
         /// 快速排序分区操作
